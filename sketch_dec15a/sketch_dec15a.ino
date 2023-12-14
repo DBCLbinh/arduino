@@ -18,12 +18,12 @@ static char humidityTemp[7];
 
 
 // khai báo wifi và hosting
-const char* ssid = "TP-Link_A6AA";
-const char* password = "07393426";
+const char* ssid = "BINH";
+const char* password = "Binh123456@";
 const char* host = "script.google.com";
 // enpoint của api
-const char *enpoint = "/macros/s/AKfycbyg6Mc0J13As_WiF0iqbgG2Uk-yup0dA4pDACn6M1Rbu5kLc6Otn7_G5cEMet-7_hkH/exec"; // Receiving data from google script address
-
+const char *enpoint = "/macros/s/AKfycbxGBrhcpImHohuwnG2JHIor6wsoVeYMwvcr6K89-LwIIYlu2_q6-YstXnIecySLW5Vw/exec"; // Receiving data from google script address
+//https://script.google.com/macros/s/AKfycbxGBrhcpImHohuwnG2JHIor6wsoVeYMwvcr6K89-LwIIYlu2_q6-YstXnIecySLW5Vw/exec
 
 
 // khai báo cổng https
@@ -67,13 +67,18 @@ float t = dht.readTemperature();
     
  // Add some delay in between checks
   delay(2000);
-
-  // truyền dữ liệu vào
-String payload =  "{\"name\": \""  + String(t,2) + "\",\"email\": \"" + String(h,2) +  "\"}";
+ // Kiểm tra dữ liệu vào
+if(!isnan(t)){
+    // truyền dữ liệu vào
+String payload =  "{\"temperature\": \""  + String(t,2) + "\",\"humidity\": \"" + String(h,2) +  "\"}";
 Serial.print(payload);
 
   // gọi API tại đây
   sendData(payload); //--> Calls the sendData Subroutine
+  
+  }
+ 
+
 }
 
 
@@ -88,6 +93,6 @@ void sendData(String payload) {
     Serial.println("Error while connecting");
   }
 
-//  delay(2000);
+ delay(120000);
   
 } 
