@@ -2,8 +2,8 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 
+// khai báo DHT
 #define DHTTYPE DHT11
-//Khai báo DHT11
 const int DHTPin = 4;
 
 // Khai báo wifi
