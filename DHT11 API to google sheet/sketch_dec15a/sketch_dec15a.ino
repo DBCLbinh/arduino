@@ -23,8 +23,6 @@ const char* password = "Binh123456@";
 const char* host = "script.google.com";
 // enpoint của api
 const char *enpoint = "/macros/s/AKfycbxGBrhcpImHohuwnG2JHIor6wsoVeYMwvcr6K89-LwIIYlu2_q6-YstXnIecySLW5Vw/exec"; // Receiving data from google script address
-//https://script.google.com/macros/s/AKfycbxGBrhcpImHohuwnG2JHIor6wsoVeYMwvcr6K89-LwIIYlu2_q6-YstXnIecySLW5Vw/exec
-
 
 // khai báo cổng https
 const int httpsPort = 443;
@@ -40,8 +38,6 @@ void setup() {
   }
   Serial.println("Wifi conneted");
 }
-
-
 
 void loop() {
 float h = dht.readHumidity();
@@ -67,6 +63,8 @@ float t = dht.readTemperature();
     
  // Add some delay in between checks
   delay(2000);
+ 
+ 
  // Kiểm tra dữ liệu vào
 if(!isnan(t)){
     // truyền dữ liệu vào
@@ -75,24 +73,18 @@ Serial.print(payload);
 
   // gọi API tại đây
   sendData(payload); //--> Calls the sendData Subroutine
-  
   }
- 
-
 }
 
 
 
 
 void sendData(String payload) {
-
   if(client->POST(enpoint, host, payload)){ 
     Serial.println("sended data");
   }
   else{
     Serial.println("Error while connecting");
   }
-
  delay(120000);
-  
 } 
