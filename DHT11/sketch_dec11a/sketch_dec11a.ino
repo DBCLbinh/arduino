@@ -20,6 +20,7 @@ dht.begin();
 
 void loop() {
   // put your main code here, to run repeatedly:
+delay(2000);
 float h = dht.readHumidity();
 float t = dht.readTemperature();
 if(isnan(h)|| isnan(t)){
